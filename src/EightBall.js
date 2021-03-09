@@ -5,6 +5,7 @@ const EightBall = (props) => {
   const [color, setColor] = useState("black");
   const [message, setMessage] = useState("Think of a Question");
 
+  // chooses a random answer and updates state
   const chooseAnswer = () => {
     const randIndex = Math.floor(Math.random() * props.answers.length);
     const randAnswer = props.answers[randIndex];
