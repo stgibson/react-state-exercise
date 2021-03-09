@@ -7,18 +7,37 @@ const EightBall = (props) => {
   const [color, setColor] = useState(initColor);
   const [message, setMessage] = useState(initMessage);
 
+  // start keeping track of all colors answers could display
+  const initColorsCount = props.answers.reduce((colors, nextAnswer) => {
+    console.log(colors);
+    const color = nextAnswer.color;
+    if (colors[color] !== 0) {
+      colors[color] = 0;
+    }
+    return colors;
+  }, {})
+  const [colorsCount, setColorsCount] = useState(initColorsCount);
+
+  // updates colorsCount by incrementing provided color
+  const updateColorsCount = (color) => {
+    const colorCount = colorsCount[color];
+    setColorsCount({ ...colorsCount, [color]: (colorCount + 1) })
+  };
+
   // chooses a random answer and updates state
   const chooseAnswer = () => {
     const randIndex = Math.floor(Math.random() * props.answers.length);
     const randAnswer = props.answers[randIndex];
     setColor(randAnswer.color);
     setMessage(randAnswer.msg);
+    updateColorsCount(randAnswer.color);
   };
 
   // resets EightBall to initial values
   const reset = () => {
     setColor(initColor);
     setMessage(initMessage);
+    setColorsCount(initColorsCount);
   };
 
   return (
@@ -29,6 +48,10 @@ const EightBall = (props) => {
         </div>
       </div>
       <button className="EightBall-button" onClick={ reset }>Reset</button>
+      <h3>Number of times each color has shown up:</h3>
+      <ul>
+        { Object.keys(colorsCount).map(color => <li>{ `${color}: ${colorsCount[color]}` }</li>) }
+      </ul>
     </>
   );
 };
