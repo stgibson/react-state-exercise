@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./EightBall.css";
 
 const EightBall = (props) => {
-  const [color, setColor] = useState("black");
-  const [message, setMessage] = useState("Think of a Question");
+  const initColor = "black";
+  const initMessage = "Think of a Question";
+  const [color, setColor] = useState(initColor);
+  const [message, setMessage] = useState(initMessage);
 
   // chooses a random answer and updates state
   const chooseAnswer = () => {
@@ -13,6 +15,12 @@ const EightBall = (props) => {
     setMessage(randAnswer.msg);
   };
 
+  // resets EightBall to initial values
+  const reset = () => {
+    setColor(initColor);
+    setMessage(initMessage);
+  };
+
   return (
     <>
       <div style={{ backgroundColor: color }} className="EightBall" onClick={ chooseAnswer }>
@@ -20,6 +28,7 @@ const EightBall = (props) => {
           <p>{ message }</p>
         </div>
       </div>
+      <button className="EightBall-button" onClick={ reset }>Reset</button>
     </>
   );
 };
