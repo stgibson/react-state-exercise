@@ -48,7 +48,7 @@ const EightBall = (props) => {
         </div>
       </div>
       <button className="EightBall-button" onClick={ reset }>Reset</button>
-      <h3>Number of times each color has shown up:</h3>
+      <h3 className="EightBall-heading">Number of times each color has shown up:</h3>
       <ul>
         { Object.keys(colorsCount).map(color => <li>{ `${color}: ${colorsCount[color]}` }</li>) }
       </ul>
