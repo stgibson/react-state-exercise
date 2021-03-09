@@ -1,7 +1,7 @@
 .EightBall {
   margin: 20px;
-  width: 500px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   /* Reviewed how to center text vertically and horizontally at https://www.w3schools.com/css/css_align.asp */
   display: flex;
